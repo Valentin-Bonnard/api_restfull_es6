@@ -4,7 +4,13 @@ function load(request, response, next, id) {
     User.findById(id)
         .exec()
         .then((user) => {
-            request.dbUser = user;
+            if (!user) {
+                return res.status(404).json({
+                    status: 400,
+                    message: "User not found"
+                });
+            }
+            req.dbUser = user;
             return next();
         }, (e) => next(e));
 };

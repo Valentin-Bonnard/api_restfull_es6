@@ -1,5 +1,7 @@
 import express from 'express';
+import validate from 'express-validation';
 import taskCtrl from '../controllers/tasks';
+import validations from './validation/task';
 
 const router = express.Router();
 
@@ -8,7 +10,7 @@ router.route('/')
     .get(taskCtrl.list)
 
     /** POST /api/tasks - Create a new tasks */
-    .post(taskCtrl.create);
+    .post(validate(validations.createTask), taskCtrl.create);
 
 
 router.route('/:userId')
@@ -16,11 +18,14 @@ router.route('/:userId')
     .get(taskCtrl.get)
 
     /** PUT /api/tasks/:userId - Update task */
-    .put(taskCtrl.update)
+    .put(validate(validations.updateTask), taskCtrl.update)
 
     /** DELETE /api/tasks/:userId - Delete task */
     .delete(taskCtrl.remove);
 
-router.param('userId', userCtrl.load);
+
+/** Load task when API with taskId route parameter is hit */
+router.param('taskId', validate(validations.getTask));
+router.param('taskId', taskCtrl.load);
 
 export default router;

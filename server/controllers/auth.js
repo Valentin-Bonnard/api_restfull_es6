@@ -1,9 +1,9 @@
-import jwt from 'jwtwebtoken';
+import jwt from 'jsonwebtoken';
 import config from '../../config/env';
-import User from './models/user';
+import User from '../models/user';
 
 
-function anthenticate(response, request, next) {
+function authenticate(response, request, next) {
     User.findOne({
         username: request.body.username
     })
@@ -23,12 +23,12 @@ function generateToken(request, response, next) {
     if (!request.user) return next();
 
     const jwtPayload = {
-        id: request.user._id
-    },
-        jwtData = {
-            expireIn: config.jwtDuration,
-        },
-        secret = config.jwtSecret;
+        id: req.user._id
+    };
+    const jwtData = {
+        expiresIn: config.jwtDuration,
+    };
+    const secret = config.jwtSecret;
 
     request.token = jwt.sign(jwtPayload, secret, jwtData);
 

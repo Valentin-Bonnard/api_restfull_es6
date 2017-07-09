@@ -1,4 +1,4 @@
-import User from '../models/task';
+import User from '../models/tasks';
 
 function load(request, response, next, id) {
     Task.findById(id)

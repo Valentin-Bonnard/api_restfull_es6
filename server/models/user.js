@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
-import { encrypt } from './utils/encryptModule';
-import { compare } from './utils/encryptModule';
+import { encrypt } from '../utils/encryptModule';
+import { compare } from '../utils/encryptModule';
 
 const UserSchema = mongoose.Schema({
     username: {
