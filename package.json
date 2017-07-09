@@ -20,6 +20,8 @@
     "body-parser": "^1.17.2",
     "crypto": "0.0.3",
     "express": "^4.15.3",
+    "express-jwt": "^3.4.0",
+    "jsonwebtoken": "^7.0.1",
     "mongoose": "^4.11.1"
   },
   "devDependencies": {

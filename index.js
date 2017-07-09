@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 import app from './config/express';
 import config from './config/env';
 
-mongoose.connect(config.db);
+mongoose.connect(config.db.uri);
 mongoose.connection.on('error', () => {
     throw new Error(`unable to connect to database: ${config.db.uri}`);
 });
