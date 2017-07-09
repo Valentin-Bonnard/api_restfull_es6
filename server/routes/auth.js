@@ -8,6 +8,6 @@ router.route('/token')
 
     .post(authCtrl.authenticate,
     authCtrl.generateToken,
-    authCtrl.responseJwt);
+    authCtrl.respondJWT);
 
 export default router;

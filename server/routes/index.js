@@ -1,6 +1,6 @@
 import express from 'express';
 import userRoutes from './users';
-import tasksRoutes from './tasks';
+import taskRoutes from './tasks';
 import authRoutes from './auth';
 
 const router = express.Router();
@@ -13,8 +13,8 @@ router.get('/api-status', (request, response) => {
     })
 });
 
-router.use('/auth', authRoutes);
 router.use('/users', userRoutes);
-router.use('/tasks', tasksRoutes);
+router.use('/tasks', taskRoutes);
+router.use('/auth', authRoutes);
 
 export default router;

@@ -22,7 +22,6 @@ app.use((err, request, response, next) => {
     }
 });
 
-
 /**
  *  Exporting our app so it can be used as module
  */

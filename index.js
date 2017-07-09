@@ -2,12 +2,12 @@ import mongoose from 'mongoose';
 import app from './config/express';
 import config from './config/env';
 
-mongoose.connect(config.db.uri);
+mongoose.connect(config.db);
 mongoose.connection.on('error', () => {
-    throw new Error(`unable to connect to database: ${config.db.uri}`);
+    throw new Error(`unable to connect to database: ${config.db}`);
 });
 mongoose.connection.on('connected', () => {
-    console.log(`Connected to database: ${config.db.uri}`);
+    console.log(`Connected to database: ${config.db}`);
 });
 
 if(config.env === 'development') mongoose.set('debug', true);

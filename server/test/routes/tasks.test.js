@@ -2,7 +2,6 @@ import request from 'supertest-as-promised';
 import httpStatus from 'http-status';
 import chai, { expect } from 'chai';
 import sinon from 'sinon';
-import config from '../../../config/env';
 import app from '../../../index';
 import { clearDatabase } from '../../helpers/ClearDB';
 import Task from '../../models/task';

@@ -1,7 +1,7 @@
 import Joi from 'joi';
 
 export default {
-    // Post /api/tasks
+    // POST /api/tasks
     createTask: {
         body: {
             user: Joi.string().regex(/^[0-9a-fA-F]{24}$/).required(),
@@ -10,7 +10,7 @@ export default {
         }
     },
 
-    // GET-PUT-DELETE /api/tasks/:taskId
+    // GET /api/tasks/:taskId
     getTask: {
         params: {
             taskId: Joi.string().regex(/^[0-9a-fA-F]{24}$/).required()
@@ -21,7 +21,7 @@ export default {
     updateTask: {
         body: {
             user: Joi.string().regex(/^[0-9a-fA-F]{24}$/),
-            description: Joi.string().required(),
+            description: Joi.string(),
             done: Joi.boolean()
         }
     }

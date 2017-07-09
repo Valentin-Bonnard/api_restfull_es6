@@ -1,28 +1,28 @@
 import express from 'express';
 import validate from 'express-validation';
 import taskCtrl from '../controllers/tasks';
-import validations from './validation/task';
+import validations from './validation/tasks';
 
 const router = express.Router();
 
 router.route('/')
-    /** GET /api/tasks - Get List of tasks */
+    /** GET /api/tasks - Get list of tasks */
     .get(taskCtrl.list)
 
-    /** POST /api/tasks - Create a new tasks */
-    .post(validate(validations.createTask), taskCtrl.create);
+    /** POST /api/tasks - Create new task */
+    .post(validate(validations.createTask),
+    taskCtrl.create);
 
-
-router.route('/:userId')
-    /** GET /api/tasks/:userId - Get task */
+router.route('/:taskId')
+    /** GET /api/tasks/:taskId - Get task */
     .get(taskCtrl.get)
 
-    /** PUT /api/tasks/:userId - Update task */
-    .put(validate(validations.updateTask), taskCtrl.update)
+    /** PUT /api/tasks/:taskId - Update task */
+    .put(validate(validations.updateTask),
+    taskCtrl.update)
 
-    /** DELETE /api/tasks/:userId - Delete task */
+    /** DELETE /api/tasks/:taskId - Delete task */
     .delete(taskCtrl.remove);
-
 
 /** Load task when API with taskId route parameter is hit */
 router.param('taskId', validate(validations.getTask));

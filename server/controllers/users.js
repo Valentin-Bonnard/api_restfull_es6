@@ -34,7 +34,7 @@ function update(request, response, next) {
     Object.assign(user, request.body);
 
     user.save()
-        .then((savedUser) => response.status(204),
+        .then(() => response.status(204),
         (e) => next(e));
 };
 
@@ -49,9 +49,9 @@ function list(request, response, next) {
 };
 
 function remove(request, response, next) {
-    const user = request.dbUsers;
+    const user = request.dbUser;
     user.remove()
-        .then(() => response.status(204),
+        .then(() => response.sendStatus(204),
         (e) => next(e));
 };
 

@@ -52,7 +52,7 @@ router.route('/')
      * @apiUse InternalServerError
      **/
 
-    .get(auth, userCtrl.list)
+    .get(userCtrl.list)
 
     /** POST /api/users - Create a new users */
     .post(userCtrl.create);
