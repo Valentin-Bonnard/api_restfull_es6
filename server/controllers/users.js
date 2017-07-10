@@ -34,7 +34,7 @@ function update(request, response, next) {
     Object.assign(user, request.body);
 
     user.save()
-        .then(() => response.status(204),
+        .then(() => response.sendStatus(204),
         (e) => next(e));
 };
 
