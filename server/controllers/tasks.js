@@ -11,7 +11,7 @@ function load(request, response, next, id) {
 }
 
 function get(request, response) {
-  return res.json(request.dbTask);
+  return response.json(request.dbTask);
 }
 
 function create(request, response, next) {

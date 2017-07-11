@@ -22,7 +22,7 @@ function get(request, response) {
 function create(request, response, next) {
     User.create({
         username: request.body.username,
-        passsword: request.body.passsword
+        password: request.body.password
     })
         .then((savedUser) => {
             return response.json(savedUser);

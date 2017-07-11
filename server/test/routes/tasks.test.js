@@ -38,12 +38,38 @@ describe('## Tasks API Tests', () => {
   });
 
   describe('### GET /tasks', () => {
-
+    it('it should GET all the tasks', (done) => {
+      request(app)
+        .get('/api/tasks')
+        .expect(httpStatus.OK)
+        .then(res => {
+          expect(res.body).to.be.an('array').that.is.empty;
+          done();
+        });
+    });
   });
+
 
   describe('### GET /tasks/:taskId', () => {
-
+    it('it should GET a task by the given id', (done) => {
+      let task = new Task({ user: user._id, description: "Read the book The Lord of the Rings" });
+      task.save((err, task) => {
+        request(app)
+          .get('/api/tasks/' + task._id.toString())
+          .send(task)
+          .expect(httpStatus.OK)
+          .then((response, err) => {
+            if (response) console.log(response.body);
+            expect(response.body).to.be.an('object').that.is.not.empty;
+            expect(response.body).to.have.deep.property('description');
+            expect(response.body).to.have.deep.property('user').to.equal(user._id.toString());
+            expect(response.body).to.have.deep.property('_id').to.equal(task._id.toString());
+            done();
+          });
+      });
+    });
   });
+
 
   describe('### POST /tasks', () => {
     it('should return the created task successfully', (done) => {
